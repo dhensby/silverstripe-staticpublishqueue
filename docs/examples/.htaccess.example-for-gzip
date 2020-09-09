@@ -34,7 +34,7 @@ ErrorDocument 500 /assets/error-500.html
 
 	## CONFIG FOR STATIC PUBLISHING
 	# Cached content - sub-pages (site in the root of a domain)
-    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+	RewriteCond "%{HTTP:Accept-encoding}" "gzip"
 	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
 	RewriteCond %{QUERY_STRING} ^$
 	RewriteCond %{REQUEST_URI} /(.*[^/])/?$
