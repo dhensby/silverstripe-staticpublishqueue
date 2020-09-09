@@ -33,7 +33,7 @@ class DeleteStaticCacheJob extends Job
                 break;
             }
             $meta = Publisher::singleton()->purgeURL($url);
-            if (! empty($meta['success'])) {
+            if (!empty($meta['success'])) {
                 $this->jobData->ProcessedURLs[$url] = $url;
                 unset($this->jobData->URLsToProcess[$url]);
             }
