@@ -43,7 +43,7 @@ ErrorDocument 500 /assets/error-500.html
 	RewriteRule .* /cache/%1.html.gz [L]
 
 	# Cached content - homepage (site in root of a domain)
-    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+	RewriteCond "%{HTTP:Accept-encoding}" "gzip"
 	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
 	RewriteCond %{QUERY_STRING} ^$
 	RewriteCond %{REQUEST_URI} ^/?$
