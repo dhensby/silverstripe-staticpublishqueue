@@ -66,7 +66,7 @@ class PublishableSiteTree extends DataExtension implements StaticallyPublishable
      * @param array|SS_List $context
      * @return array;
      */
-    public function objectsToDelete(array $context): array
+    public function objectsToDelete($context): array
     {
         $list = [];
         switch ($context['action']) {
@@ -89,7 +89,7 @@ class PublishableSiteTree extends DataExtension implements StaticallyPublishable
     /**
      * The only URL belonging to this object is it's own URL.
      */
-    public function urlsToCache()
+    public function urlsToCache() : array
     {
         return [Director::absoluteURL($this->getOwner()->Link()) => 0];
     }
