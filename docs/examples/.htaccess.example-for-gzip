@@ -54,7 +54,7 @@ ErrorDocument 500 /assets/error-500.html
 	# Config for site in a subdirectory
 	# (START remove the following four rules if site is on root of a domain. E.g. test.com rather than test.com/my-site)
 	# Cached content - sub-pages (site in sub-directory)
-    RewriteCond "%{HTTP:Accept-encoding}" "gzip"
+	RewriteCond "%{HTTP:Accept-encoding}" "gzip"
 	RewriteCond %{REQUEST_METHOD} ^GET|HEAD$
 	RewriteCond %{QUERY_STRING} ^$
 	RewriteCond %{REQUEST_URI} /(.*[^/])/(.*[^/])/?$
