@@ -20,6 +20,6 @@ class DeleteWholeCache extends Job
      */
     public function process()
     {
-        $this->isComplete = Publisher::singleton()->purgeAll($url);
+        $this->isComplete = Publisher::singleton()->purgeAll();
     }
 }
