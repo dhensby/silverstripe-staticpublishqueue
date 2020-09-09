@@ -81,8 +81,8 @@ class SiteTreePublishingEngine extends SiteTreeExtension
         // then this is eht equivalent of an unpublish and publish as far as the
         // static publisher is concerned
         if ($original && (
-                $original->ParentID ! == $this->getOwner()->ParentID
-                || $original->URLSegment ! == $this->getOwner()->URLSegment
+                $original->ParentID !==$this->getOwner()->ParentID
+                || $original->URLSegment !==$this->getOwner()->URLSegment
             )
         ) {
             $context = [
