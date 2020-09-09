@@ -18,7 +18,7 @@ interface StaticallyPublishable
      * Get a list of URLs that this object wishes to maintain. URLs should not
      * overlap with other objects.
      *
-     * Note: include the URL of the object itself!
+     * Note: include the URL of the object itself! 
      *
      * @return array associative array of URL (string) => Priority (int)
      */

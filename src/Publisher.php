@@ -103,7 +103,7 @@ abstract class Publisher implements StaticPublisher
                 $response->setBody(
                     str_replace(
                         '</html>',
-                        '<!-- ' . DBDateTime::now()->Full() . " -->\n</html>",
+                        '<! -- ' . DBDateTime::now()->Full() . " -->\n</html>",
                         $response->getBody()
                     )
                 );

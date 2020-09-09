@@ -81,8 +81,8 @@ class SiteTreePublishingEngine extends SiteTreeExtension
         // then this is eht equivalent of an unpublish and publish as far as the
         // static publisher is concerned
         if ($original && (
-                $original->ParentID !== $this->getOwner()->ParentID
-                || $original->URLSegment !== $this->getOwner()->URLSegment
+                $original->ParentID ! == $this->getOwner()->ParentID
+                || $original->URLSegment ! == $this->getOwner()->URLSegment
             )
         ) {
             $context = [
@@ -138,7 +138,7 @@ class SiteTreePublishingEngine extends SiteTreeExtension
     public function flushChanges()
     {
         $queue = QueuedJobService::singleton();
-        if (!empty($this->toUpdate)) {
+        if (! empty($this->toUpdate)) {
             foreach ($this->toUpdate as $queueItem) {
                 $job = Injector::inst()->create(GenerateStaticCacheJob::class);
 
@@ -156,7 +156,7 @@ class SiteTreePublishingEngine extends SiteTreeExtension
             $this->toUpdate = [];
         }
 
-        if (!empty($this->toDelete)) {
+        if (! empty($this->toDelete)) {
             foreach ($this->toDelete as $queueItem) {
                 $job = Injector::inst()->create(DeleteStaticCacheJob::class);
 

@@ -16,7 +16,7 @@ class GenerateStaticCacheJob extends Job
     }
 
     /**
-     * Do some processing yourself!
+     * Do some processing yourself! 
      */
     public function process()
     {
