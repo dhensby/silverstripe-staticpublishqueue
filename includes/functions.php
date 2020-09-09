@@ -47,7 +47,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
     }
 }
 
-if (! function_exists('SilverStripe\\StaticPublishQueue\\PathToURL')) {
+if (!function_exists('SilverStripe\\StaticPublishQueue\\PathToURL')) {
     function PathToURL($path, $destPath, $domainBasedCaching = false)
     {
         if (strpos($path, $destPath) === 0) {
