@@ -110,7 +110,7 @@ class FilesystemPublisher extends Publisher
      */
     public function publishURL(string $url, ?bool $forcePublish = false): array
     {
-        if (!$url) {
+        if (! $url) {
             user_error('Bad url:' . var_export($url, true), E_USER_WARNING);
             return [];
         }
@@ -191,7 +191,7 @@ class FilesystemPublisher extends Publisher
         $success = true;
         if ($path = $this->URLtoPath($url)) {
             if ($this->Config()->get('lazy_form_recognition')) {
-                $id = Config::inst()->get(SecurityToken::class, 'default_name');
+                $id = Config::inst()->get(SecurityToken::class, 'default_name') ?? 'SecurityID';
                 // little hack to make sure we do not include pages with live forms.
                 if (stripos($response->getBody(), '<input type="hidden" name="'.$id.'"')) {
                     return false;
