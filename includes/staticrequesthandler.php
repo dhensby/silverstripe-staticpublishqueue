@@ -28,13 +28,13 @@ return function ($cacheDir, $urlMapping = null) {
     }
 
     $cachePath = $cacheDir . DIRECTORY_SEPARATOR . $path;
-    $hasCachedFile = false;
+    $hasCachedFile = true;
     if (file_exists($cachePath . '.html.gz')) {
-        $hasCachedFile = true;
-        $cachePath .= '.html';
-    } elseif (file_exists($cachePath . '.html')) {
         $cachePath .= '.html.gz';
-        $hasCachedFile = true;
+    } elseif (file_exists($cachePath . '.html')) {
+        $cachePath .= '.html';
+    } else {
+        $hasCachedFile = false;
     }
     //check for directory traversal attack
     $realCacheDir = realpath($cacheDir);
