@@ -63,7 +63,7 @@ class SiteTreePublishingEngine extends SiteTreeExtension
     }
 
     /**
-     * @param mixed $toDelete
+     * @param array $toDelete
      * @return $this
      */
     public function setToDelete($toDelete)
