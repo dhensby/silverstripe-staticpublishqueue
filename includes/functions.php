@@ -2,7 +2,7 @@
 
 namespace SilverStripe\StaticPublishQueue;
 
-if (! function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
+if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
     function URLtoPath($url, $baseURL = '', $domainBasedCaching = false)
     {
         $url = str_replace('?stage=Live', '?', $url);
