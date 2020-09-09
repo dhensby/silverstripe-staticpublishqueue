@@ -156,7 +156,7 @@ class SiteTreePublishingEngine extends SiteTreeExtension
             $this->toUpdate = [];
         }
 
-        if (! empty($this->toDelete)) {
+        if (!empty($this->toDelete)) {
             foreach ($this->toDelete as $queueItem) {
                 $job = Injector::inst()->create(DeleteStaticCacheJob::class);
 
