@@ -56,7 +56,7 @@ return function ($cacheDir, $urlMapping = null) {
     if (!empty($cacheConfig['responseCode'])) {
         header('HTTP/1.1 ' . $cacheConfig['responseCode']);
     }
-    if (! empty($cacheConfig['headers'])) {
+    if (!empty($cacheConfig['headers'])) {
         foreach ($cacheConfig['headers'] as $header) {
             header($header, true);
         }
