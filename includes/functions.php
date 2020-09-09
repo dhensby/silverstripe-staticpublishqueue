@@ -13,7 +13,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
         $urlParts = @parse_url($url);
 
         // query strings are not yet supported so we need to bail is there is one present
-        if (! empty($urlParts['query'])) {
+        if (!empty($urlParts['query'])) {
             return;
         }
 
