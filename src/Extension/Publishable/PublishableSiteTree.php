@@ -7,6 +7,7 @@ use SilverStripe\Control\Director;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\StaticPublishQueue\Contract\StaticallyPublishable;
 use SilverStripe\StaticPublishQueue\Contract\StaticPublishingTrigger;
+use SilverStripe\ORM\SS_List;
 
 /**
  * Bare-bones impelmentation of a publishable page.
@@ -26,10 +27,10 @@ class PublishableSiteTree extends DataExtension implements StaticallyPublishable
     }
 
     /**
-     * @param array $context
+     * @param array|SS_List $context
      * @return array
      */
-    public function objectsToUpdate(array $context): array
+    public function objectsToUpdate($context): array
     {
         $list = [];
         switch ($context['action']) {
@@ -62,8 +63,8 @@ class PublishableSiteTree extends DataExtension implements StaticallyPublishable
     }
 
     /**
-     * @param array $context
-     * @return array
+     * @param array|SS_List $context
+     * @return array;
      */
     public function objectsToDelete(array $context): array
     {

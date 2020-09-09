@@ -16,7 +16,7 @@ interface StaticPublishingTrigger
      *
      * @return array|SS_List
      */
-    public function objectsToUpdate(array $context);
+    public function objectsToUpdate($context);
 
     /**
      * Provides a SS_list of objects that need to be deleted.
@@ -25,5 +25,5 @@ interface StaticPublishingTrigger
      *
      * @return array|SS_List
      */
-    public function objectsToDelete(array $context);
+    public function objectsToDelete($context);
 }
