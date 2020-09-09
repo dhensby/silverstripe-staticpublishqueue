@@ -30,10 +30,10 @@ return function ($cacheDir, $urlMapping = null) {
     $cachePath = $cacheDir . DIRECTORY_SEPARATOR . $path;
     $hasHTMLFile = false;
     $hasGZIPFile = false;
-    if (file_exists($cachePath . '.html')) {
+    if (file_exists($cachePath . '.html.gz')) {
         $hasHTMLFile = true;
         $cachePath .= '.html';
-    } elseif (file_exists($cachePath . '.html.gz')) {
+    } elseif (file_exists($cachePath . '.html')) {
         $cachePath .= '.html.gz';
         $hasGZIPFile = true;
     }
