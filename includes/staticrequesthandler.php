@@ -53,7 +53,7 @@ return function ($cacheDir, $urlMapping = null) {
         return false;
     }
     header('X-Cache-Hit: ' . date(\DateTime::COOKIE));
-    if (! empty($cacheConfig['responseCode'])) {
+    if (!empty($cacheConfig['responseCode'])) {
         header('HTTP/1.1 ' . $cacheConfig['responseCode']);
     }
     if (! empty($cacheConfig['headers'])) {
