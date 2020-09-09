@@ -158,7 +158,7 @@ class FilesystemPublisher extends Publisher
      * @param string       $url
      * @return bool
      */
-    protected function publishRedirect($response, $url)
+    protected function publishRedirect($response, string $url) : bool
     {
         $success = true;
         if ($path = $this->URLtoPath($url)) {
@@ -177,7 +177,7 @@ class FilesystemPublisher extends Publisher
      * @param string       $url
      * @return bool
      */
-    protected function publishPage($response, $url)
+    protected function publishPage(string $response, string $url) : bool
     {
         $success = true;
         if ($path = $this->URLtoPath($url)) {
@@ -200,7 +200,7 @@ class FilesystemPublisher extends Publisher
      * @param string $filePath
      * @return bool
      */
-    protected function saveToPath($content, $filePath): bool
+    protected function saveToPath(string $content, string $filePath): bool
     {
         if (empty($content)) {
             return false;
@@ -227,16 +227,26 @@ class FilesystemPublisher extends Publisher
 
     protected function compressFile(string $publishPath): string
     {
-        //we keep the html file for now ... so use second parameter to achieve this.
+        // read original
+        $data = implode('', file($publishPath));
+        // encode it with highest level
+        $gzdata = gzencode($data, 9);
+        // new file
         $publishPathGZipped = $publishPath . '.gz';
-        exec('rm ' . $publishPathGZipped . ' -rf');
-        exec('gzip ' . $publishPath);
-        exec('chmod 0777 ' . $publishPathGZipped);
+        // remove
+        unlink($publishPathGZipped);
+        // open a new one
+        $fp = fopen($publishPathGZipped, 'w');
+        // write it
+        fwrite($fp, $gzdata);
+        // close it
+        fclose($fp);
+        @chmod($file, 0664);
 
         return $publishPathGZipped;
     }
 
-    protected function deleteFromPath($filePath)
+    protected function deleteFromPath(string $filePath) : bool
     {
         $deletePath = $this->getDestPath() . DIRECTORY_SEPARATOR . $filePath;
         if (file_exists($deletePath)) {
