@@ -101,7 +101,7 @@ class FilesystemPublisher extends Publisher
      */
     public function publishURL(string $url, ?bool $forcePublish = false): array
     {
-        if (! $url) {
+        if (!$url) {
             user_error('Bad url:' . var_export($url, true), E_USER_WARNING);
             return [];
         }
