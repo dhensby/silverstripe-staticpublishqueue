@@ -24,7 +24,7 @@ return function ($cacheDir, $urlMapping = null)
         $path = URLtoPath($url);
     }
 
-    if (! $path) {
+    if (!$path) {
         return false;
     }
 
