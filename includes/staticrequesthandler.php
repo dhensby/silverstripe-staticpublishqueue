@@ -63,7 +63,7 @@ return function ($cacheDir, $urlMapping = null) {
     }
     if ($hasCachedFile) {
         $etag = '"' . md5_file($cachePath) . '"';
-        if (! empty($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
+        if (!empty($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
             header('HTTP/1.1 304', true);
             return true;
         }
