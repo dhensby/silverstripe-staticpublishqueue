@@ -6,6 +6,8 @@ use SilverStripe\Assets\Filesystem;
 use SilverStripe\Control\HTTPResponse;
 use function SilverStripe\StaticPublishQueue\PathToURL;
 use SilverStripe\StaticPublishQueue\Publisher;
+use SilverStripe\Core\Config\Config;
+use SilverStripe\Security\SecurityToken;
 use function SilverStripe\StaticPublishQueue\URLtoPath;
 
 class FilesystemPublisher extends Publisher
@@ -18,12 +20,19 @@ class FilesystemPublisher extends Publisher
     /**
      * @var string
      */
-    protected $fileExtension = 'html';
+    protected $fileExtension = 'php';
 
     /**
      * @var bool
      */
-    private static $use_gzip_compression = true;
+    private static $use_gzip_compression = false;
+
+    /**
+     * avoid caching any pages with name"SecurityID" - an indication that a
+     * form my be present that requires a fresh SecurityID
+     * @var bool
+     */
+    private static $lazy_form_recognition = false;
 
     /**
      * @return string
@@ -181,9 +190,12 @@ class FilesystemPublisher extends Publisher
     {
         $success = true;
         if ($path = $this->URLtoPath($url)) {
-            // little hack to make sure we do not include pages with live forms.
-            if (stripos($response->getBody(), 'name="SecurityID"')) {
-                return false;
+            if ($this->Config()->get('lazy_form_recognition')) {
+                $id = Config::inst()->get(SecurityToken::class, 'default_name');
+                // little hack to make sure we do not include pages with live forms.
+                if (stripos($response->getBody(), '<input type="hidden" name="'.$id.'"')) {
+                    return false;
+                }
             }
             if ($this->getFileExtension() === 'php') {
                 $phpContent = $this->generatePHPCacheFile($response);
