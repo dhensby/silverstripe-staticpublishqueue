@@ -31,7 +31,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
         $filename = $urlSegment ?: 'index';
 
         if ($domainBasedCaching) {
-            if (! $urlParts) {
+            if (!$urlParts) {
                 throw new \LogicException('Unable to parse URL');
             }
             if (isset($urlParts['host'])) {
