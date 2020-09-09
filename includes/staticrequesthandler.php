@@ -28,14 +28,13 @@ return function ($cacheDir, $urlMapping = null) {
     }
 
     $cachePath = $cacheDir . DIRECTORY_SEPARATOR . $path;
-    $hasHTMLFile = false;
-    $hasGZIPFile = false;
+    $hasCachedFile = false;
     if (file_exists($cachePath . '.html.gz')) {
-        $hasHTMLFile = true;
+        $hasCachedFile = true;
         $cachePath .= '.html';
     } elseif (file_exists($cachePath . '.html')) {
         $cachePath .= '.html.gz';
-        $hasGZIPFile = true;
+        $hasCachedFile = true;
     }
     //check for directory traversal attack
     $realCacheDir = realpath($cacheDir);
@@ -50,7 +49,7 @@ return function ($cacheDir, $urlMapping = null) {
 
     if (file_exists($cachePath . '.php')) {
         $cacheConfig = require $cachePath . '.php';
-    } elseif (! $hasGZIPFile && ! $hasHTMLFile) {
+    } elseif (! $hasCachedFile) {
         return false;
     }
     header('X-Cache-Hit: ' . date(\DateTime::COOKIE));
@@ -62,7 +61,7 @@ return function ($cacheDir, $urlMapping = null) {
             header($header, true);
         }
     }
-    if ($hasHTMLFile || $hasGZIPFile) {
+    if ($hasCachedFile) {
         $etag = '"' . md5_file($cachePath) . '"';
         if (! empty($_SERVER['HTTP_IF_NONE_MATCH']) && $_SERVER['HTTP_IF_NONE_MATCH'] === $etag) {
             header('HTTP/1.1 304', true);
