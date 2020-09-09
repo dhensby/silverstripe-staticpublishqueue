@@ -190,10 +190,12 @@ class FilesystemPublisher extends Publisher
     {
         $success = true;
         if ($path = $this->URLtoPath($url)) {
+            $body = '';
             if ($this->Config()->get('lazy_form_recognition')) {
                 $id = Config::inst()->get(SecurityToken::class, 'default_name') ?? 'SecurityID';
                 // little hack to make sure we do not include pages with live forms.
-                if (stripos($response->getBody(), '<input type="hidden" name="'.$id.'"')) {
+                $body = $response->getBody();
+                if (stripos($body, '<input type="hidden" name="'.$id.'"')) {
                     return false;
                 }
             }
@@ -201,7 +203,10 @@ class FilesystemPublisher extends Publisher
                 $phpContent = $this->generatePHPCacheFile($response);
                 $success = $this->saveToPath($phpContent, $path . '.php');
             }
-            return $this->saveToPath($response->getBody(), $path . '.html') && $success;
+            if (! $body) {
+                $body = $response->getBody();
+            }
+            return $this->saveToPath($body, $path . '.html') && $success;
         }
         return false;
     }
