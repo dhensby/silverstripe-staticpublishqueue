@@ -6,15 +6,16 @@ interface StaticPublisher
 {
     /**
      * @param string $url
+     * @param bool $forcePublish
      * @return array A result array
      */
-    public function publishURL(string $url, ?bool $forcePublish = false): array;
+    public function publishURL($url, $forcePublish = false);
 
     /**
      * @param string $url
      * @return array A result array
      */
-    public function purgeURL(string $url): array;
+    public function purgeURL($url): array;
 
     /**
      * return true on success
@@ -25,5 +26,5 @@ interface StaticPublisher
     /**
      * @return array
      */
-    public function getPublishedURLs(): array;
+    public function getPublishedURLs();
 }
