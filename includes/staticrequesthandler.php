@@ -2,8 +2,7 @@
 
 namespace SilverStripe\StaticPublishQueue;
 
-return function ($cacheDir, $urlMapping = null)
-{
+return function ($cacheDir, $urlMapping = null) {
     // allow content authors to avoid static cache via cookie
     if (isset($_COOKIE['bypassStaticCache'])) {
         return false;
@@ -24,7 +23,7 @@ return function ($cacheDir, $urlMapping = null)
         $path = URLtoPath($url);
     }
 
-    if (!$path) {
+    if (! $path) {
         return false;
     }
 

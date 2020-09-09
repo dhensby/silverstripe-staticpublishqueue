@@ -2,7 +2,7 @@
 
 namespace SilverStripe\StaticPublishQueue;
 
-if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
+if (! function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
     function URLtoPath($url, $baseURL = '', $domainBasedCaching = false)
     {
         $url = str_replace('?stage=Live', '?', $url);
@@ -13,7 +13,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
         $urlParts = @parse_url($url);
 
         // query strings are not yet supported so we need to bail is there is one present
-        if (!empty($urlParts['query'])) {
+        if (! empty($urlParts['query'])) {
             return;
         }
 
@@ -31,7 +31,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
         $filename = $urlSegment ?: 'index';
 
         if ($domainBasedCaching) {
-            if (!$urlParts) {
+            if (! $urlParts) {
                 throw new \LogicException('Unable to parse URL');
             }
             if (isset($urlParts['host'])) {
@@ -47,7 +47,7 @@ if (!function_exists('SilverStripe\\StaticPublishQueue\\URLtoPath')) {
     }
 }
 
-if (!function_exists('SilverStripe\\StaticPublishQueue\\PathToURL')) {
+if (! function_exists('SilverStripe\\StaticPublishQueue\\PathToURL')) {
     function PathToURL($path, $destPath, $domainBasedCaching = false)
     {
         if (strpos($path, $destPath) === 0) {
