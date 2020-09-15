@@ -1,5 +1,5 @@
 {
-    "name": "sunnysideup/staticpublishqueue",
+    "name": "silverstripe/staticpublishqueue",
     "description": "Static publishing queue to create static versions of pages for enhanced performance and security",
     "license": "BSD-3-Clause",
     "type": "silverstripe-vendormodule",
