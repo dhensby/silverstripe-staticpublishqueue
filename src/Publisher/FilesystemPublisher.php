@@ -187,7 +187,7 @@ class FilesystemPublisher extends Publisher
      * @param string       $url
      * @return bool
      */
-    protected function publishPage(string $response, string $url) : bool
+    protected function publishPage($response, $url)
     {
         $success = true;
         if ($path = $this->URLtoPath($url)) {
