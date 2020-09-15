@@ -58,7 +58,7 @@ abstract class Publisher implements StaticPublisher
             $url = Director::absoluteURL($url);
         }
         $urlParts = parse_url($url);
-        if (! empty($urlParts['query'])) {
+        if (!empty($urlParts['query'])) {
             parse_str($urlParts['query'], $getVars);
         } else {
             $getVars = [];
@@ -144,7 +144,7 @@ abstract class Publisher implements StaticPublisher
         ];
 
         foreach ($response->getHeaders() as $header => $value) {
-            if (! in_array($header, ['cache-control'], true)) {
+            if (!in_array($header, ['cache-control'], true)) {
                 $cacheConfig['headers'][] = sprintf('%s: %s', $header, $value);
             }
         }

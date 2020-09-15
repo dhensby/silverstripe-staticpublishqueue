@@ -16,7 +16,7 @@ class GenerateStaticCacheJob extends Job
     }
 
     /**
-     * Do some processing yourself! 
+     * Do some processing yourself!
      */
     public function process()
     {
@@ -27,7 +27,7 @@ class GenerateStaticCacheJob extends Job
                 break;
             }
             $meta = Publisher::singleton()->publishURL($url, true);
-            if (! empty($meta['success'])) {
+            if (!empty($meta['success'])) {
                 $this->jobData->ProcessedURLs[$url] = $url;
                 unset($this->jobData->URLsToProcess[$url]);
             }

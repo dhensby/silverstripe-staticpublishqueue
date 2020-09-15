@@ -138,7 +138,7 @@ class SiteTreePublishingEngine extends SiteTreeExtension
     public function flushChanges()
     {
         $queue = QueuedJobService::singleton();
-        if (! empty($this->toUpdate)) {
+        if (!empty($this->toUpdate)) {
             foreach ($this->toUpdate as $queueItem) {
                 $job = Injector::inst()->create(GenerateStaticCacheJob::class);
 
@@ -156,7 +156,7 @@ class SiteTreePublishingEngine extends SiteTreeExtension
             $this->toUpdate = [];
         }
 
-        if (! empty($this->toDelete)) {
+        if (!empty($this->toDelete)) {
             foreach ($this->toDelete as $queueItem) {
                 $job = Injector::inst()->create(DeleteStaticCacheJob::class);
 

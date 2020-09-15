@@ -57,7 +57,7 @@ class FilesystemPublisher extends Publisher
     public function setFileExtension($fileExtension)
     {
         $fileExtension = strtolower($fileExtension);
-        if (! in_array($fileExtension, ['html', 'php'], true)) {
+        if (!in_array($fileExtension, ['html', 'php'], true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     'Bad file extension "%s" passed to %s::%s',
@@ -78,7 +78,7 @@ class FilesystemPublisher extends Publisher
 
     public function purgeURL(string $url): array
     {
-        if (! $url) {
+        if (!$url) {
             user_error('Bad url:' . var_export($url, true), E_USER_WARNING);
             return [];
         }
@@ -111,7 +111,7 @@ class FilesystemPublisher extends Publisher
      */
     public function publishURL($url, $forcePublish = false): array
     {
-        if (! $url) {
+        if (!$url) {
             user_error('Bad url:' . var_export($url, true), E_USER_WARNING);
             return [];
         }
@@ -196,7 +196,7 @@ class FilesystemPublisher extends Publisher
                 $id = Config::inst()->get(SecurityToken::class, 'default_name') ?? 'SecurityID';
                 // little hack to make sure we do not include pages with live forms.
                 $body = $response->getBody();
-                if (stripos($body, '<input type="hidden" name="'.$id.'"')) {
+                if (stripos($body, '<input type="hidden" name="' . $id . '"')) {
                     return false;
                 }
             }
@@ -204,7 +204,7 @@ class FilesystemPublisher extends Publisher
                 $phpContent = $this->generatePHPCacheFile($response);
                 $success = $this->saveToPath($phpContent, $path . '.php');
             }
-            if (! $body) {
+            if (!$body) {
                 $body = $response->getBody();
             }
             return $this->saveToPath($body, $path . '.html') && $success;

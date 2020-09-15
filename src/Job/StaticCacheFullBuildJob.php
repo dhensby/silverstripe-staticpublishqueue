@@ -84,7 +84,7 @@ class StaticCacheFullBuildJob extends Job
 
             foreach ($this->jobData->URLsToCleanUp as $staleURL) {
                 $purgeMeta = Publisher::singleton()->purgeURL($staleURL);
-                if (! empty($purgeMeta['success'])) {
+                if (!empty($purgeMeta['success'])) {
                     unset($this->jobData->URLsToCleanUp[$staleURL]);
                 }
             }
