@@ -20,7 +20,7 @@ class StaticPublishingTriggerPage extends SiteTree implements TestOnly, StaticPu
         return $obj;
     }
 
-    public function objectsToUpdate(array $context): ?ArrayList
+    public function objectsToUpdate($context)
     {
         switch ($context['action']) {
             case 'publish':
@@ -33,7 +33,7 @@ class StaticPublishingTriggerPage extends SiteTree implements TestOnly, StaticPu
     /**
      * Remove the object on unpublishing (the parent will get updated via objectsToUpdate).
      */
-    public function objectsToDelete(array $context): ?ArrayList
+    public function objectsToDelete($context)
     {
         switch ($context['action']) {
             case 'publish':
